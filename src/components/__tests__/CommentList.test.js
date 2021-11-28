@@ -1,13 +1,16 @@
 import { mount } from "enzyme";
 import React from "react";
 import Root from "../../Root";
-import CommentBox from "../CommentBox";
+import CommentList from "../CommentList";
 
 let wrapper;
 beforeEach(() => {
+  const initialState = {
+    comments: ["comment1", "comment2"],
+  };
   wrapper = mount(
-    <Root>
-      <CommentBox />
+    <Root initialState={initialState}>
+      <CommentList />
     </Root>
   );
 });
@@ -15,9 +18,8 @@ afterEach(() => {
   wrapper.unmount();
 });
 
-it("has a textarea and a button", () => {
-  expect(wrapper.find("textarea").length).toEqual(1);
-  expect(wrapper.find("button").length).toEqual(1);
+it("creates Li", () => {
+  console.log(wrapper.find("li").length);
 });
 
 describe("textarea", () => {

@@ -1,12 +1,16 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { saveComment } from "../actions";
 
 const CommentBox = () => {
   const [value, setValue] = useState("");
+  const dispatch = useDispatch();
   const handleChange = (e) => {
     setValue(e.target.value);
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    dispatch(saveComment(value));
     setValue("");
   };
   return (
