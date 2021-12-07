@@ -11,7 +11,12 @@ const CommentList = () => {
       return <li key={index}>{comment}</li>;
     });
   };
-  return <ul>{renderComments()}</ul>;
+  return (
+    <div>
+      <h1>Comment List</h1>
+      <ul>{renderComments()}</ul>;
+    </div>
+  );
 };
 
 export default CommentList;
