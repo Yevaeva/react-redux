@@ -1,17 +1,16 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { reduxForm, Field } from "redux-form";
-import { signup } from "../../actions";
+import { signin } from "../../actions";
 
-const Signup = ({ handleSubmit }) => {
+const Signin = ({ handleSubmit }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { errorMessage } = useSelector((state) => state.auth);
   const onSubmit = (formProps) => {
     dispatch(
-      signup(formProps, () => {
+      signin(formProps, () => {
         navigate("/feature");
       })
     );
@@ -38,10 +37,10 @@ const Signup = ({ handleSubmit }) => {
           />
         </fieldset>
         <div>{errorMessage}</div>
-        <button>Sign Up</button>
+        <button>Sign In</button>
       </form>
     </div>
   );
 };
 
-export default reduxForm({ form: "signup" })(Signup);
+export default reduxForm({ form: "signin" })(Signin);
