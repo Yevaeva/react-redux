@@ -1,4 +1,5 @@
-import { CHANGE_AUTH, SAVE_COMMENT } from "./types";
+import axios from "axios";
+import { AUTH_USER, CHANGE_AUTH, SAVE_COMMENT } from "./types";
 
 export const saveComment = (comment) => {
   return {
@@ -12,4 +13,9 @@ export const changeAuth = (isAuth) => {
     type: CHANGE_AUTH,
     payload: isAuth,
   };
+};
+
+export const signup = (formProps) => (dispatch) => {
+  axios.post("http://localhost:3007/signup", formProps);
+  // dispatch({ type: AUTH_USER });
 };

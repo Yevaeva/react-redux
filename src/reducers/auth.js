@@ -1,6 +1,11 @@
 import { CHANGE_AUTH } from "../actions/types";
 
-export const authReducer = (state = false, action) => {
+const INITIAL_STATE = {
+  authenticated: "",
+  errorMessage: "",
+};
+
+export const auth = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case CHANGE_AUTH:
       return action.payload;
@@ -9,4 +14,4 @@ export const authReducer = (state = false, action) => {
   }
 };
 
-export default authReducer;
+export default auth;

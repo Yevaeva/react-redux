@@ -3,20 +3,19 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { saveComment } from "../actions";
-import ChildComponent from "./requireAuth";
 
 const CommentBox = () => {
   const [value, setValue] = useState("");
-  // const { auth } = useSelector((state) => state);
+  const { auth } = useSelector((state) => state);
   const dispatch = useDispatch();
-  // let navigate = useNavigate();
+  let navigate = useNavigate();
 
-  // useEffect(() => {
-  //   if (!auth) {
-  //     console.log("ypu must logged in");
-  //     navigate("/");
-  //   }
-  // }, [auth]);
+  useEffect(() => {
+    if (!auth) {
+      console.log("you must logged in");
+      navigate("/");
+    }
+  }, [auth, navigate]);
   const handleChange = (e) => {
     setValue(e.target.value);
   };
@@ -39,4 +38,4 @@ const CommentBox = () => {
   );
 };
 
-export default ChildComponent()(CommentBox);
+export default CommentBox;

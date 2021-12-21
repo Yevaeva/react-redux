@@ -1,12 +1,15 @@
 import { Provider } from "react-redux";
-import { createStore } from "redux";
+import { applyMiddleware, createStore } from "redux";
 import reducers from "./reducers";
+import async from "./middlewares/async";
+import stateValidator from "./middlewares/stateValidator";
 
-const Root = (props) => {
-  return (
-    <Provider store={createStore(reducers, props.initialState)}>
-      {props.children}
-    </Provider>
+const Root = ({ children, initialState = {} }) => {
+  const store = createStore(
+    reducers,
+    initialState,
+    applyMiddleware(async, stateValidator)
   );
+  return <Provider store={store}>{children}</Provider>;
 };
 export default Root;
